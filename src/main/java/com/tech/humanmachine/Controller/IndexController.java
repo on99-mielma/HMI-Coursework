@@ -12,4 +12,9 @@ public class IndexController {
     public String toIndex(){
         return "redirect:/HumanMachine/mainMenu.html";
     }
+
+    @RequestMapping("/*")
+    public String toIndex2(){
+        return "redirect:/HumanMachine/mainMenu.html";
+    }
 }
