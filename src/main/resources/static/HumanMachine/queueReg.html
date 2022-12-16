@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../HumanMachine/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../HumanMachine/assets/css/body.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <title>预约挂号</title>
+</head>
+<body>
+<div id="queueReg" class="queueFlower">
+    <div class="container-fluid g-0">
+        <div class="row justify-content-center text-center pt-4 pb-2">
+            <div class="col-12">
+                <p class="fs-1 lh-lg fw-bolder text-nowrap bluePurpleBackground">{{this.allStep[this.curSection]}}</p>
+            </div>
+        </div>
+        <!-- //////////////////////////////////////////////////////////////////////////////// -->
+        <div v-if="this.curSection === 0">
+            <div class="row justify-content-start py-5">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <button class="queueTypeChoose text-center text-nowrap fw-bolder text-dark px-5 py-4 fs-1"
+                            style="width: 275px;" v-on:click="this.curSection = 1;this.chooseQueueType = false;">
+                        <i class="bi bi-heart-pulse-fill text-start"></i>
+                        普通号
+                    </button>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row justify-content-start py-5">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <button class="queueTypeChoose text-center text-nowrap fw-bolder text-dark px-5 py-4 fs-1"
+                            style="width: 275px;" v-on:click="this.curSection = 1">
+                        <i class="bi bi-person-hearts text-start"></i>
+                        专家号
+                    </button>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+        <!-- //////////////////////////////////////////////////////////////////////////////// -->
+        <div v-if="this.curSection === 1">
+            <div class="row justify-content-start py-3">
+                <div class="col-8">
+                    <input type="text" id="searchKey" class="form-control bg-white border-dark "
+                           placeholder="输入科室并点击搜索">
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-info text-start text-nowrap fw-bolder text-dark" v-on:click="this.dSid()">
+                        <i class="bi bi-search text-start"></i>
+                        搜索
+                    </button>
+                </div>
+            </div>
+            <div class="row justify-content-evenly text-nowrap text-center fw-bold text-dark my-1"
+                 v-for="twodetail in this.departmentSearchResult">
+                <div class="col-6" v-for="detail in twodetail">
+                    <button class="departButton text-center text-nowrap fw-bold" style="width: 125px"
+                            v-on:click="this.setCurDp(detail.roomName,detail.roomWhere);this.followQueueType()">
+                        <p class="fs-3 fw-bold">{{detail.roomName}}</p>
+                        {{detail.roomWhere}}
+                    </button>
+                </div>
+            </div>
+            <div class="row justify-content-center text-nowrap text-center fw-bolder mt-2 pageRow pt-3 pb-0">
+                <div class="col-5">
+                    <button class="lastPageButton text-nowrap text-start text-nowrap fw-bolder fs-2 " v-on:click="pageChange(-1)">
+                        <i class="bi bi-backspace-fill text-start text-dark"></i>
+                        上一页
+                    </button>
+                </div>
+                <div class="col-2">
+                    <p class="fw-bolder fs-3 text-danger lh-lg">{{this.currentPage}}/{{this.maxPage}}</p>
+                </div>
+                <div class="col-5">
+                    <button class="nextPageButton text-nowrap text-start text-nowrap fw-bolder fs-2" v-on:click="pageChange(1)">
+                        下一页
+                        <i class="bi bi-backspace-reverse-fill text-start text-dark"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!--         ////////////////////////////////////////////////////////////////////////////////-->
+        <div v-if="this.curSection === 2">
+            <div class="row queueFlower justify-content-center pt-3 pb-2">
+                <div class="col-12">
+                    <div class="input-group  currentDepartment">
+                        <p class="fw-bold fs-3 text-dark lh-lg mx-auto">科室：</p>
+                        <p class="fw-bolder fs-3 text-dark lh-lg mx-auto">{{this.currentDepartment}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row queueFlower justify-content-center py-3 doctorDetail my-1" v-for="doctor in this.allDoctor">
+                <div class="col-4 ">
+                    <p class=" text-nowrap text-dark text-nowrap fs-2 fw-bolder">&#12288;{{doctor.doctorName}}</p>
+                </div>
+                <div class="col-4 ">
+                    <p class=" text-nowrap text-dark text-nowrap fs-2 fw-bolder">{{doctor.position}}</p>
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-primary text-nowrap text-center fw-bolder" v-if="doctor.work" v-on:click="this.curSection = 3">
+                        可预约
+                    </button>
+                    <button class="btn btn-danger text-nowrap text-center fw-bolder" v-if="!doctor.work" disabled>
+                        不可约
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- //////////////////////////////////////////////////////////////////////////////// -->
+        <div v-if="this.curSection === 3">
+            <div class="row queueFlower justify-content-center pt-2 pb-1">
+                <div class="col-12">
+                    <div class="input-group currentDepartment">
+                        <p class="fw-bold fs-3 text-dark lh-lg mx-auto">科室：</p>
+                        <p class="fw-bolder fs-3 text-dark lh-lg mx-auto">{{this.currentDepartment}}</p>
+                    </div>
+                </div>
+            </div>
+            <div v-for="(item,index) in this.future6Day">
+                <div class="row justify-content-evenly text-nowrap text-center fw-bold text-dark my-1" v-if="index%2===0">
+                    <div class="col-6">
+                        <button class="chooseTimeButton text-dark text-start text-nowrap fw-bold">
+                            <p class="fs-2 fw-bold text-dark lh-base" v-if="this.future6cost[Number(this.chooseQueueType)][index] !== 0">{{this.future6cost[Number(this.chooseQueueType)][index]}}元</p>
+                            <p class="fs-2 fw-bold text-dark lh-base" v-if="this.future6cost[Number(this.chooseQueueType)][index] === 0">不可约</p>
+                            {{this.future6Day[index]}}
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button class="chooseTimeButton text-dark text-start text-nowrap fw-bold">
+                            <p class="fs-2 fw-bold text-dark lh-base" v-if="this.future6cost[Number(this.chooseQueueType)][index+1] !== 0">{{this.future6cost[Number(this.chooseQueueType)][index+1]}}元</p>
+                            <p class="fs-2 fw-bold text-dark lh-base" v-if="this.future6cost[Number(this.chooseQueueType)][index+1] === 0">不可约</p>
+                            {{this.future6Day[index+1]}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center text-nowrap text-dark my-4">
+                <div class="col-7">
+                    <button class="payButton text-dark text-start text-nowrap fw-bolder px-5" v-on:click="this.backToSummer()">
+                        <i class="bi bi-coin text-start"></i>
+                        去支付
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- //////////////////////////////////////////////////////////////////////////////// -->
+        <div class="row mt-3 pt-1 pb-5">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="row">
+                    <button class="loginRegButton" v-on:click="this.backToSummer()">
+                        <i class="bi bi-backspace-fill text-start"></i>
+                        退出
+                    </button>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <!-- //////////////////////////////////////////////////////////////////////////////// -->
+    </div>
+</div>
+
+
+<script src="../HumanMachine/assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../HumanMachine/assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="../HumanMachine/assets/js/vue.global.js" type="text/javascript"></script>
+<script src="../HumanMachine/assets/js/vue-router.global.js" type="text/javascript"></script>
+<script src="../HumanMachine/assets/js/axios-0.18.0.js" type="text/javascript"></script>
+<script src="../HumanMachine/assets/js/htmlvuejs/queueReg.js" type="text/javascript"></script>
+</body>
+</html>
