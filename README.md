@@ -20,3 +20,9 @@ java --version
 java -jar HumanMachine-1.0.0-SNAPSHOT.jar
 ```
 
+#### 3.打开浏览器，网址处输入:
+
+```
+localhost:8087/
+```
+
