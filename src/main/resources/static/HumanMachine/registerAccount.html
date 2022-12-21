@@ -38,7 +38,7 @@
                         <div class="col-12 col-md-12 col-lg-12 col-sm-12">
                             <div class="input-group m-auto input-group-lg">
                                 <span class="input-group-text bg-info border-dark w-340px py-2 px-2" id="basic-addon2">手机号码:</span>
-                                <input type="text" id="regAccPN" class="form-control bg-info border-dark" placeholder="手机号码" aria-label="手机号码" aria-describedby="basic-addon2">
+                                <input type="number" id="regAccPN" class="form-control bg-info border-dark" placeholder="手机号码" aria-label="手机号码" aria-describedby="basic-addon2">
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                         <div class="col-12 col-md-12 col-lg-12 col-sm-12 ">
                             <div class="input-group m-auto input-group-lg">
                                 <span class="input-group-text bg-info border-dark w-340px py-2 px-2" id="basic-addon4">输入密码:</span>
-                                <input type="text" id="regAccPI" class="form-control bg-info border-dark" placeholder="输入密码" aria-label="输入密码" aria-describedby="basic-addon4">
+                                <input type="password" id="regAccPI" class="form-control bg-info border-dark" placeholder="输入密码" aria-label="输入密码" aria-describedby="basic-addon4">
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                         <div class="col-12 col-md-12 col-lg-12 col-sm-12">
                             <div class="input-group m-auto input-group-lg">
                                 <span class="input-group-text bg-info border-dark w-340px py-2 px-2" id="basic-addon5">确认密码:</span>
-                                <input type="text" id="regAccPC" class="form-control bg-info border-dark" placeholder="确认密码" aria-label="确认密码" aria-describedby="basic-addon5">
+                                <input type="password" id="regAccPC" class="form-control bg-info border-dark" placeholder="确认密码" aria-label="确认密码" aria-describedby="basic-addon5">
                             </div>
                         </div>
                     </div>
@@ -81,17 +81,22 @@
                 </div>
                 <div class="row gx-0 gy-0 text-center justify-content-center mt-2 mb-2">
                     <div class="d-grid gap-2 col-5 mx-auto">
-                        <button class="btn btn-danger text-start text-dark fs-3 text-nowrap fw-bolder">
+                        <button class="btn btn-danger text-start text-dark fs-3 text-nowrap fw-bolder" v-on:click="this.wgoLoginPage();">
                             <i class="bi bi-arrow-bar-up text-start mx-auto px-3"></i>注册
                         </button>
                     </div>
                 </div>
-                <div class="row gx-0 gy-0 text-center justify-content-center mt-2 mb-2">
-                    <div class="d-grid gap-2 col-8 mx-auto">
-                        <button class="btn btn-warning text-center text-dark fs-3">
-                            <i class="bi bi-backspace text-start mx-auto px-3"></i>退出
-                        </button>
+                <div class="row mt-3 pt-2 pb-5">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="row">
+                            <button class="loginRegButton" v-on:click="this.wgoLoginPage();">
+                                <i class="bi bi-backspace-fill text-start"></i>
+                                退出
+                            </button>
+                        </div>
                     </div>
+                    <div class="col-2"></div>
                 </div>
             </div>
         </div>

@@ -32,7 +32,13 @@ const App = {
         },
         testMethod(){
             console.log(this.theDate)
-        }
+        },
+        wgoRegisterAccount(){
+            window.location.href = "../../../../HumanMachine/registerAccount.html";
+        },
+        wgoMainMenu(){
+            window.location.href = "../../../../HumanMachine/mainMenu.html";
+        },
     },
     beforeMount(){
         console.log(this.theDate)

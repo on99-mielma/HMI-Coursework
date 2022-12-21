@@ -43,6 +43,9 @@ const App = {
         },
         checkMethods(){
             console.log("?,6")
+        },
+        wgoLoginPage(){
+            window.location.href = "../../../../HumanMachine/loginPage.html";
         }
     },
     beforeMount(){
