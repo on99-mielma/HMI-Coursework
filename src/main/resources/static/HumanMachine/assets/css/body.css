@@ -24,7 +24,8 @@
     border-radius: 0px;
 }
 .greenMountain{
-    background: transparent url('/HumanMachine/assets/img/bg/full02.jpeg') no-repeat scroll 0 0;
+    /*background: transparent url('/HumanMachine/assets/img/bg/full02.jpeg') no-repeat scroll 0 0;*/
+    background: transparent url('https://s2.loli.net/2023/01/01/4XHpxGstWwQvAmg.jpg') no-repeat scroll 0 0;
 }
 .greenBackground{
     background: #2EA416;
@@ -62,13 +63,16 @@
     background: #86F58C;
 }
 .colorGifBless{
-    background: #FFFFFF url("/HumanMachine/assets/img/bg/hvgrassvillage.jpg") repeat local 0 0;
+    /*background: #FFFFFF url("/HumanMachine/assets/img/bg/hvgrassvillage.jpg") repeat local 0 0;*/
+    background: #FFFFFF url("https://s2.loli.net/2023/01/01/CyYHxqe6zJQZUdX.jpg") repeat local 0 0;
 }
 .greenLight{
-    background: #FFFFFF url("/HumanMachine/assets/img/bg/hvgreenlight.jpg") repeat local 0 0;
+    /*background: #FFFFFF url("/HumanMachine/assets/img/bg/hvgreenlight.jpg") repeat local 0 0;*/
+    background: #FFFFFF url("https://s2.loli.net/2023/01/01/4bhRc8fJLzrwHDE.jpg") repeat local 0 0;
 }
 .queueFlower{
-    background: #FFFFFF url("/HumanMachine/assets/img/bg/hvqueueFlower.jpg") repeat local 0 0;
+    /*background: #FFFFFF url("/HumanMachine/assets/img/bg/hvqueueFlower.jpg") repeat local 0 0;*/
+    background: #FFFFFF url("https://s2.loli.net/2023/01/01/leUn28a5stNymqc.jpg") repeat local 0 0;
 }
 
 .buttonNoticeGreen {
